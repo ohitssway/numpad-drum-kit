@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Numpad Drum Kit</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h2> Numpad Music </h2>
+  <div class="keys">
+      <div class="flex-grid">
+        <div data-key="103" class="key col">
+            <kbd>7</kbd>
+        </div>
+        <div data-key="104" class="key col">
+            <kbd>8</kbd>
+        </div>
+        <div data-key="105" class="key col">
+            <kbd>9</kbd>
+        </div>
+    </div>
+    <div class="flex-grid">
+        <div data-key="100" class="key col">
+            <kbd>4</kbd>
+        </div>
+        <div data-key="101" class="key col">
+            <kbd>5</kbd>
+        </div>
+        <div data-key="102" class="key col">
+            <kbd>6</kbd>
+        </div>
+    </div>
+    <div class="flex-grid">
+        <div data-key="97" class="key col">
+            <kbd>1</kbd>
+        </div>
+        <div data-key="98" class="key col">
+            <kbd>2</kbd>
+        </div>
+        <div data-key="99" class="key col">
+            <kbd>3</kbd>
+        </div>
+    </div>
+  </div>
+
+  <audio data-key="97" src="sounds/clap.wav"></audio>
+  <audio data-key="98" src="sounds/hihat.wav"></audio>
+  <audio data-key="99" src="sounds/kick.wav"></audio>
+  <audio data-key="100" src="sounds/openhat.wav"></audio>
+  <audio data-key="101" src="sounds/boom.wav"></audio>
+  <audio data-key="102" src="sounds/ride.wav"></audio>
+  <audio data-key="103" src="sounds/snare.wav"></audio>
+  <audio data-key="104" src="sounds/tom.wav"></audio>
+  <audio data-key="105" src="sounds/tink.wav"></audio>
+
+<script>
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if(!audio) return;
+      
+      audio.currentTime = 0; //rewind to start of file
+      audio.play();
+      key.classList.add("playing");
+    }
+    window.addEventListener("keydown", playSound);
+    function removeTransition(e){
+        if(e.propertyName !== 'transform') return; // skip it if it's not a transform
+        this.classList.remove("playing");
+    }
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener("transitionend", removeTransition));
+</script>
+</body>
+</html>
