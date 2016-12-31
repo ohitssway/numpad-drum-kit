@@ -1,5 +1,5 @@
 body{
-   background-color: springgreen;
+   background-color: white;
    padding: 0px;
    margin: 0px;
 }
@@ -42,14 +42,14 @@ h2 {
   border-radius: 5%;
   transition:all .07s;
   color:white;
-  background: #67809f;
+  background: black;
   text-shadow:0 0 5px black;
 }
 
 .playing {
   transform:scale(1.1);
-  border-color: lightskyblue;
-  box-shadow: 0 0 10px lightskyblue;
+  border-color: dodgerblue;
+  box-shadow: 0 0 10px dodgerblue;
 }
 
 kbd {
